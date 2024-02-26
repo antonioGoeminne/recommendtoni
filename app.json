@@ -1,11 +1,17 @@
 {
   "expo": {
     "name": "recommendtoni",
-    "slug": "recommendtoni",
+    "slug": "recommendtoni-app",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "6496f703-bb7d-422c-b66f-0a126bba15f8"
+      }
+    },
+    "owner": "toni_3003"
   },
   "name": "recommendtoni"
 }
