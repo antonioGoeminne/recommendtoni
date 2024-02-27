@@ -15,7 +15,7 @@ export const Button = (props) => {
       <Text
         className={clsx("font-bold text-center text-white", {
           "text-white": variant === "primary",
-          "text-gray-500": variant === "secondary",
+          "text-gray-700": variant === "secondary",
         })}
       >
         {label}
