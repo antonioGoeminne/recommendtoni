@@ -19,7 +19,7 @@ export default function App() {
             };
             return icons[route.name];
           },
-          tabBarActiveTintColor: "tomato",
+          tabBarActiveTintColor: "#1919E6",
           tabBarInactiveTintColor: "gray",
           headerShown: false,
         })}
