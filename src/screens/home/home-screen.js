@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import { Select } from "../../ui/select/Select";
 import { Button } from "../../ui/button/Button";
 import { OptionsGenerator } from "../../features/recommendation/OptionsGenerator";
@@ -17,19 +17,27 @@ export default function HomeScreen() {
   const [mainOption, setMainOption] = useState("");
   const [secondOption, setSecondOption] = useState(0);
   const [htmlContent, setHtmlContent] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const changeMainOption = (newOption) => setMainOption(newOption);
+  const isButtonDisabled = !mainOption?.length || !secondOption;
+
+  const changeMainOption = (newOption) => {
+    setMainOption(newOption);
+    setSecondOption(0);
+  };
   const changeSecondOption = (newOption) => setSecondOption(newOption);
 
   const submit = async () => {
     if (secondOption) {
+      setIsLoading(true);
       const content = await getRecommendation({ status: secondOption });
       setHtmlContent(content);
+      setIsLoading(false);
     }
   };
 
   return (
-    <View className="px-4 py-14">
+    <View className="px-4 py-10 bg-white">
       <Text className="text-lg font-bold text-center">
         Recomendador de pelis
       </Text>
@@ -42,11 +50,25 @@ export default function HomeScreen() {
       <OptionsGenerator
         changeSecondOption={changeSecondOption}
         mainOption={mainOption}
+        secondOption={secondOption}
       />
 
-      <Button onPress={submit} label="Generar" sx="mt-10" />
+      <Button
+        isLoading={isLoading}
+        disabled={isButtonDisabled}
+        onPress={submit}
+        label={htmlContent?.length ? "Re-generar" : "Generar"}
+        sx="mt-10"
+      />
       <View className="mx-auto my-8">
-        <HtmlVisualizer htmlContent={htmlContent} />
+        {htmlContent?.length ? (
+          <HtmlVisualizer htmlContent={htmlContent} />
+        ) : (
+          <Image
+            style={{ width: 200, height: 200 }}
+            source={require("../../waiting.png")}
+          />
+        )}
       </View>
     </View>
   );
