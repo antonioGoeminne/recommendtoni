@@ -1,4 +1,4 @@
-<img align="right"  src="./.github/assets/app.mp4">
+<img align="right"  src="./.github/assets/app.png">
 
 Welcome to this code! Here, I made recommendation films app with react native.
 
