@@ -65,7 +65,7 @@ export default function HomeScreen() {
           <HtmlVisualizer htmlContent={htmlContent} />
         ) : (
           <Image
-            style={{ width: 200, height: 200 }}
+            style={{ width: 300, height: 300 }}
             source={require("../../waiting.png")}
           />
         )}
